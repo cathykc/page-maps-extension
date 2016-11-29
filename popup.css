@@ -1,0 +1,32 @@
+html {
+  height: 190px;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 190px;
+  margin: 10px;
+}
+
+.update-origin {
+  position: relative;
+  width: 480px;
+}
+
+#origin-address {
+  width: 100%;
+}
+
+.hide-button {
+  text-align: center;
+  width: 100%;
+}
+
+.logo {
+  background-image: url("icon-large.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100px;
+}

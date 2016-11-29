@@ -1,0 +1,121 @@
+.extension-box {
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 300px;
+	background: white;
+	padding: 15px;
+	font-size: 14px;
+	box-shadow: 1px 1px 1px #AAA;
+	border: 0.5px solid #DDD;
+}
+.extension-box:after,
+.extension-box:before{
+	content: ' ';
+	height: 0;
+	width: 0;
+	position: absolute;
+	border: solid transparent;	
+}
+.extension-box:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-width: 10px;
+}
+.extension-box:before {
+	border-color: rgba(221, 221, 221, 0);
+	border-width: 11px;
+}
+
+.extension-ul:after,
+.extension-ul:before {
+	bottom: 100%;
+	left: 10;
+}
+.extension-ul:after {
+	border-bottom-color: #ffffff;
+	margin-left: -10px;
+}
+.extension-ul:before {
+	border-bottom-color: #DDD;
+	margin-left: -11px;
+}
+
+.extension-dl:after,
+.extension-dl:before {
+	top: 100%;
+	left: 10;
+}
+.extension-dl:after {
+	border-top-color: #ffffff;
+	margin-left: -10px;
+}
+.extension-dl:before {
+	border-top-color: #DDD;
+	margin-left: -11px;
+}
+
+.extension-ur:after,
+.extension-ur:before {
+	bottom: 100%;
+	left: 310px;
+}
+.extension-ur:after {
+	border-bottom-color: #ffffff;
+	margin-left: -10px;
+}
+.extension-ur:before {
+	border-bottom-color: #DDD;
+	margin-left: -11px;
+}
+
+.extension-dr:after,
+.extension-dr:before {
+	top: 100%;
+	left: 310px;
+}
+.extension-dr:after {
+	border-top-color: #ffffff;
+	margin-left: -10px;
+}
+.extension-dr:before {
+	border-top-color: #DDD;
+	margin-left: -11px;
+}
+
+
+.extension-box-address {
+	font-size: 0.8em;
+	white-space: nowrap;
+  	overflow: hidden;
+}
+
+.extension-box-direction-summary {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.extension-box-travel-time,
+.extension-box-distance {
+	width: 50%;
+	/*float: left;*/
+	text-align: center;
+	font-size: 1em;
+}
+
+.extension-box-travel-time {
+	float: left;
+}
+
+.extension-box-distance {
+	margin-left: 50%;
+}
+
+.extension-box-map {
+	height: 195px;
+	background: #DDD;
+}
+
+.temp-extension-position {
+	display: inline-block;
+}
+

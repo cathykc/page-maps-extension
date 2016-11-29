@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+
+  "name": "Page Maps",
+  "description": "",
+  "version": "1.0",
+  "icons": {
+    "128": "icon128.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["jquery-3.1.1.min.js", "main.js"],
+      "css": ["extension_style.css"]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "geolocation",
+    "storage"
+  ],
+  "web_accessible_resources": [
+    "map_view.html"
+  ],
+  "content_security_policy": "script-src 'self' https://code.jquery.com https://maps.googleapis.com https://maps.google.com https://maps.gstatic.com; object-src 'self'"
+}
