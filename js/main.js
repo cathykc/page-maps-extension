@@ -1,7 +1,3 @@
-var gmaps_directions_api_key = "AIzaSyB89Rcc--9dfVHWK7s2XANE_9b2QjXp7oY";
-var gmaps_geocoding_api_key = "AIzaSyB5Fd0hKCJCOMC0Htkd0MA9zFQx0gYxeqI"
-var gmaps_embed_api_key = "AIzaSyCL50-tj8GVWrEq1rrtV1VIzxR58TaneHs"
-
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     console.log("HELLO");
