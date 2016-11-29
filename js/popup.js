@@ -6,12 +6,6 @@ function sendOriginAddress() {
   chrome.storage.sync.set({'origin': origin}, function() {
     // ?
   });
-
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {origin: origin}, function(response) {
-      // ?
-    });
-  });
 }
 
 function initAutocomplete() {

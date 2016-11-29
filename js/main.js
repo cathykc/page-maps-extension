@@ -1,14 +1,3 @@
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    console.log("HELLO");
-    console.log(request.origin);
-    origin_address = request.origin;
-    // if ()
-    // if (request.origin == "hello")
-    sendResponse({farewell: "goodbye"});
-});
-
-
 function createInformationBox(x, y, origin, destination, direction_info) {
   $("body")
   .append($("<div>").addClass("extension-box")
