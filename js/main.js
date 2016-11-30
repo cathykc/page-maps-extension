@@ -1,4 +1,6 @@
 function createInformationBox(x, y, origin, destination, direction_info) {
+  deleteInformationBox();
+
   $("body")
   .append($("<div>").addClass("extension-box")
     .append($("<div>").addClass("extension-box-summary")
@@ -12,7 +14,6 @@ function createInformationBox(x, y, origin, destination, direction_info) {
     .append($("<div>").addClass("extension-box-footer"))
   );
 
-  // $(".extension-box-origin").html("<span class='bold'>F: </span>" + origin);
   $(".extension-box-destination").html(destination);
   $(".extension-box-travel-time").html(direction_info["duration"]["text"]);
   $(".extension-box-distance").html(direction_info["distance"]["text"]);
@@ -66,18 +67,16 @@ function createInformationBox(x, y, origin, destination, direction_info) {
   )
 }
 
+
 function deleteInformationBox() {
   $(".extension-box").remove();
 }
 
-function getDirectionInformation(origin, destination, x, y) {
 
-  var request_url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + 
-  origin + 
-  "&destination=" +
-  destination +
-  "&key=" +
-  gmaps_directions_api_key
+function getDirectionInformation(origin, destination, x, y) {
+  var request_url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin
+  + "&destination=" + destination
+  + "&key=" + gmaps_directions_api_key
 
   $.get(request_url, function(data) {
     if (data["status"] == "OK") {
@@ -85,49 +84,53 @@ function getDirectionInformation(origin, destination, x, y) {
     } else {
       deleteInformationBox();
     }
-    
   });
 }
 
+
 function isValidAddress(address, x, y) {
+  chrome.storage.sync.get(['origin', 'origin-lat', 'origin-lng'], function(result) {
+    
+    var lat, lng;
 
-  var request_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-  address +
-  "&key=" +
-  gmaps_geocoding_api_key;
+    if (result['origin-lat'] && result['origin-lng']) {
+      lat = result['origin-lat'];
+      lng = result['origin-lng'];  
+    } else {
+      lat = 39.951493;
+      lng = -75.193773;
+    }
 
-  $.get(request_url, function(data) {
-    if (data["status"] == "OK") {
+    var request_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + address
+    + "&location=" + lat + "," + lng + "&radius=50000"
+    + "&key=" + gmaps_places_api_key;
 
-      
+    $.get(request_url, function(data) {
 
-      chrome.storage.sync.get('origin', function(result) {
+      if (data["status"] == "OK") {
 
         var origin_address = "1 College Hall Philadelphia PA, 19104";
-        var sync_origin = result.origin;
-        if (sync_origin && sync_origin.length) {
-          origin_address = sync_origin;
+        if (result['origin'] && result['origin'].length) {
+          origin_address = result['origin'];
         }
 
-        // if multiple pick the one closest to you ? - allow user to pick from multiple?
         getDirectionInformation(
           origin_address,
           data["results"][0]["formatted_address"],
           x,
           y
         );
-      });
 
-      
-    } else {
-      deleteInformationBox();
-    }
+      } else {
+        deleteInformationBox();
+      }
+    });
+
   });
 }
 
 
 $(document).ready(function() {
-
   $("body").mouseup(function() {
 
     var highlight;
@@ -148,5 +151,4 @@ $(document).ready(function() {
       deleteInformationBox();
     }
   });
-
 });

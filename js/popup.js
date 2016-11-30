@@ -1,10 +1,23 @@
 var autocomplete;
 
 function sendOriginAddress() {
-  var origin = $("#origin-address").val()
+  var origin = $("#origin-address").val();
 
-  chrome.storage.sync.set({'origin': origin}, function() {
-    // ?
+  var request_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+  address +
+  "&key=" +
+  gmaps_geocoding_api_key;
+
+  $.get(request_url, function(data) {
+    if (data["status"] == "OK") {
+      chrome.storage.sync.set({
+        'origin': data["results"][0]["formatted_address"],
+        'origin-lat': data["results"][0]["geometry"]["location"]["lat"],
+        'origin-lng': data["results"][0]["geometry"]["location"]["lng"]
+      }, function() {
+        // ?
+      });
+    }
   });
 }
 
