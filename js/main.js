@@ -140,8 +140,7 @@ $(document).ready(function() {
       highlight = document.selection.createRange().text;
       range = document.selection.getRangeAt(0);
     }
-    console.log(highlight);
-    console.log(highlight.split(" ").length > 1);
+
     if (highlight.length && (highlight.split(" ").length > 1)) {
       var position = range.getBoundingClientRect();
       isValidAddress(highlight, position.left, position.top);
