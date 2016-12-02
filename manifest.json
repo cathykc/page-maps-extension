@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Page Maps",
-  "description": "",
+  "name": "PageMaps",
+  "description": "Get information about an address without navigating away from your current page.",
   "version": "1.0",
   "icons": {
     "128": "img/icon128.png"
@@ -24,6 +24,9 @@
     "activeTab",
     "geolocation",
     "storage"
+  ],
+  "web_accessible_resources": [
+    "img/loading.gif"
   ],
   "content_security_policy": "script-src 'self' https://code.jquery.com https://maps.googleapis.com https://maps.google.com https://maps.gstatic.com; object-src 'self'"
 }

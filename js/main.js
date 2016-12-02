@@ -50,12 +50,14 @@ function createInformationBox(x, y, origin, destination, direction_info) {
 
   $(".extension-box").css("left", x_pos).css("top", y_pos)
 
+  $(".extension-box-map").css("background-image", "url('" + chrome.extension.getURL("img/loading.gif") + "')")
+
   var map_url = "https://www.google.com/maps/embed/v1/directions?key=" + 
   gmaps_embed_api_key +
   "&origin=" + 
-  origin +
+  encodeURIComponent(origin) +
   "&destination=" +
-  destination
+  encodeURIComponent(destination)
 
   $(".extension-box-map")
   .append($("<iframe>")
@@ -74,11 +76,14 @@ function deleteInformationBox() {
 
 
 function getDirectionInformation(origin, destination, x, y) {
-  var request_url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin
-  + "&destination=" + destination
+  var request_url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + encodeURIComponent(origin)
+  + "&destination=" + encodeURIComponent(destination)
   + "&key=" + gmaps_directions_api_key
 
+  console.log("inside direction");
+
   $.get(request_url, function(data) {
+    console.log(data);
     if (data["status"] == "OK") {
       createInformationBox(x, y, origin, destination, data["routes"][0]["legs"][0]);
     } else {
@@ -90,7 +95,7 @@ function getDirectionInformation(origin, destination, x, y) {
 
 function isValidAddress(address, x, y) {
   chrome.storage.sync.get(['origin', 'origin-lat', 'origin-lng'], function(result) {
-    
+
     var lat, lng;
 
     if (result['origin-lat'] && result['origin-lng']) {
@@ -101,13 +106,15 @@ function isValidAddress(address, x, y) {
       lng = -75.193773;
     }
 
-    var request_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + address
+    var request_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + encodeURIComponent(address)
     + "&location=" + lat + "," + lng + "&radius=50000"
     + "&key=" + gmaps_places_api_key;
 
     $.get(request_url, function(data) {
 
-      if (data["status"] == "OK") {
+      console.log(data);
+
+      if (  data["status"] == "OK") {
 
         var origin_address = "1 College Hall Philadelphia PA, 19104";
         if (result['origin'] && result['origin'].length) {

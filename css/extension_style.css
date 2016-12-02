@@ -8,6 +8,8 @@
 	font-size: 14px;
 	box-shadow: 1px 1px 1px #AAA;
 	border: 0.5px solid #DDD;
+	z-index: 999999999999;
+	color: black;
 }
 .extension-box:after,
 .extension-box:before{
@@ -112,7 +114,9 @@
 
 .extension-box-map {
 	height: 195px;
-	background: #DDD;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: 10%;
 }
 
 .temp-extension-position {

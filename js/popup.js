@@ -4,9 +4,8 @@ function sendOriginAddress() {
   var origin = $("#origin-address").val();
 
   var request_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-  address +
-  "&key=" +
-  gmaps_geocoding_api_key;
+  origin +
+  "&key=AIzaSyB5Fd0hKCJCOMC0Htkd0MA9zFQx0gYxeqI";
 
   $.get(request_url, function(data) {
     if (data["status"] == "OK") {
