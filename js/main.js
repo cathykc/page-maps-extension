@@ -80,10 +80,7 @@ function getDirectionInformation(origin, destination, x, y) {
   + "&destination=" + encodeURIComponent(destination)
   + "&key=" + gmaps_directions_api_key
 
-  console.log("inside direction");
-
   $.get(request_url, function(data) {
-    console.log(data);
     if (data["status"] == "OK") {
       createInformationBox(x, y, origin, destination, data["routes"][0]["legs"][0]);
     } else {
@@ -111,8 +108,6 @@ function isValidAddress(address, x, y) {
     + "&key=" + gmaps_places_api_key;
 
     $.get(request_url, function(data) {
-
-      console.log(data);
 
       if (  data["status"] == "OK") {
 

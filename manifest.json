@@ -3,7 +3,7 @@
 
   "name": "PageMaps",
   "description": "Get information about an address without navigating away from your current page.",
-  "version": "1.0",
+  "version": "1.1",
   "icons": {
     "128": "img/icon128.png"
   },
